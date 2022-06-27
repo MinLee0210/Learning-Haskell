@@ -1,8 +1,11 @@
 -- LEARNING RECURSIVE
-myGCD a b = if remainder == 0
-            then b
-            else myGCD b remainder
-    where remainder = a `mod` b
+-- myGCD a b = if remainder == 0
+--             then b
+--             else myGCD b remainder
+--     where remainder = a `mod` b
+
+myGCD a 0 = a
+myGCD a b = myGCD b a`mod`b
 
 sayAmount n = case n of 
             1 -> "one"
