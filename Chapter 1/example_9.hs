@@ -78,3 +78,6 @@ isPWS a = (preprocess a) == reverse (preprocess a)
     where preprocess a = map toLower (filter (\x -> x /= ' ') a)
 
 -- Write harmonic function using lazy evaluation
+fractionSeq [] = []
+fractionSeq (x:xs) = (1/x):(fractionSeq xs)
+harmonicSum n = foldl (+) 0 (fractionSeq (take n [1 ..]))
