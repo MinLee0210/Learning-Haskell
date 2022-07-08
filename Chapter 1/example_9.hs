@@ -1,5 +1,7 @@
 -- HIGHER-ORDER FUNCTIONS
 
+import Data.Char
+
 add3ToAll [] = []
 add3ToAll (x:xs) = (x + 3):(add3ToAll xs)
 
@@ -13,7 +15,7 @@ squareAll [] = []
 squareAll (x:xs) = (x^2):(squareAll xs)
 
 myMap f [] = []
-myMap f (x:xs) = (f c):(myMap f xs)
+myMap f (x:xs) = (f x):(myMap f xs)
 
 -- If test takes null list as an input, return the empty list, 
 -- else, test takes a list as its parameter;
@@ -53,9 +55,26 @@ reverseList xs = foldl rcons [] xs
 -- myFoldl is a function as a prototype of foldl, 
 -- it contails f-as a binary function, init- as an intial value - and []-as a list
 myFoldl f init [] = init
-myFoldl f init (x:xs) = myFold f newInit xs
+myFoldl f init (x:xs) = myFoldl f newInit xs
     where newInit = f init x
 
 myFoldr f init [] = init
 myFoldr f init (x:xs) = f x rightResult
     where rightResult = myFoldr f init xs
+
+-- Exercise
+-- Re-create elem function
+containElem a aList = if length (filter (\x -> x== a) aList) > 0
+                      then 1 == 1
+                      else 1 == 0
+                      
+-- Recognize the palindrome in case of containing space
+-- 1. Remove space 
+-- 2. Create a list to contain its reverse
+-- 3. Compare 2 list
+
+-- PWS stands for palindrome with space
+isPWS a = (preprocess a) == reverse (preprocess a)
+    where preprocess a = map toLower (filter (\x -> x /= ' ') a)
+
+-- Write harmonic function using lazy evaluation
